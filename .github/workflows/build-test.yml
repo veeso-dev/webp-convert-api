@@ -1,0 +1,39 @@
+name: build-test
+
+on:
+  pull_request:
+    paths-ignore:
+      - "*.md"
+  push:
+    paths-ignore:
+      - "*.md"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dtolnay/toolchain@stable
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - name: Install dependencies
+        run: |
+          sudo apt update && 
+          sudo apt install -y libssl-dev pkg-config unzip &&
+          wget -O /tmp/cargo-make.zip https://github.com/sagiegurari/cargo-make/releases/download/0.37.15/cargo-make-v0.37.15-x86_64-unknown-linux-gnu.zip &&
+          sudo unzip /tmp/cargo-make.zip -d /tmp &&
+          sudo mv /tmp/cargo-make-v0.37.5-x86_64-unknown-linux-gnu/cargo-make $HOME/.cargo/bin/cargo-make &&
+          sudo chmod +x $HOME/.cargo/bin/cargo-make
+      - name: Build
+        run: cargo build --all-targets
+      - name: Test
+        run: cargo make test --profile development
+      - name: Format
+        run: cargo make check-format
+      - name: Clippy
+        run: cargo make lint
