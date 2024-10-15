@@ -27,7 +27,7 @@ jobs:
           sudo apt install -y libssl-dev pkg-config unzip &&
           wget -O /tmp/cargo-make.zip https://github.com/sagiegurari/cargo-make/releases/download/0.37.15/cargo-make-v0.37.15-x86_64-unknown-linux-gnu.zip &&
           sudo unzip /tmp/cargo-make.zip -d /tmp &&
-          sudo mv /tmp/cargo-make-v0.37.5-x86_64-unknown-linux-gnu/cargo-make $HOME/.cargo/bin/cargo-make &&
+          sudo mv /tmp/cargo-make-v0.37.15-x86_64-unknown-linux-gnu/cargo-make $HOME/.cargo/bin/cargo-make &&
           sudo chmod +x $HOME/.cargo/bin/cargo-make
       - name: Build
         run: cargo build --all-targets
