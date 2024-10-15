@@ -7,7 +7,7 @@ env_files = [
 description = "Run app"
 dependencies = []
 command = "cargo"
-args = ["run"]
+args = ["run", "${@}"]
 
 [tasks.test]
 description = "Run unit tests"

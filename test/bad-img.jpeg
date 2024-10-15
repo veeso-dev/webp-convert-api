@@ -13,8 +13,6 @@
     - [Run with Cargo make](#run-with-cargo-make)
   - [webp-convert-api API](#webp-convert-api-api)
     - [Check](#check)
-    - [Convert](#convert)
-    - [Resize](#resize)
   - [Contributing and issues](#contributing-and-issues)
   - [Changelog](#changelog)
   - [License](#license)
@@ -58,26 +56,6 @@ GET /check
 ```
 
 Response: Empty (200)
-
-### Convert
-
-```txt
-POST /convert
-```
-
-Body: image binary
-
-Response: image/webp with webp image data
-
-### Resize
-
-```txt
-POST /resize/:width/:height
-```
-
-Body: image binary
-
-Response: image/webp with webp image data
 
 ---
 
